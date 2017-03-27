@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'subgit'
+
+instance = Subgit.new ARGV[0]
+instance.read_and_run
+#puts Hola.hi(ARGV[0])
