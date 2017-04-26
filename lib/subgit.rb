@@ -20,20 +20,20 @@ class Subgit
 
         if not diretorio.nil?
           # Rodar os comandos para cada dir
-          p
-          p
-          p "// #{diretorio}, branch: #{branch}" unless diretorio.nil?
+          puts 
+          puts
+          puts "// #{diretorio}, branch: #{branch}" unless diretorio.nil?
           # Faz o fetch do código
-          p "Fetching svn revisions:\n" + `git -C #{diretorio} svn fetch`
+          puts "Fetching svn revisions:\n" + `git -C #{diretorio} svn fetch`
           # Verificar se o branch atual é o branch do spec
           current_branch = `git -C #{diretorio} rev-parse --abbrev-ref HEAD`
           if current_branch != branch then
-            p "Branch atual [#{current_branch}] não é o branch da spec [#{branch}]."
+            puts "Branch atual [#{current_branch}] não é o branch da spec [#{branch}]."
             next
           end
           # Atualiza o branch atual
-          p
-          p "Merge:\n\n" + `git -C #{diretorio} merge origin/#{branch}`
+          puts
+          puts "Merge:\n\n" + `git -C #{diretorio} merge origin/#{branch}`
         end
       end
     end

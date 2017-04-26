@@ -9,7 +9,7 @@ file = ARGV[0]
 # Le o current working directory
 pwd = ARGV[1]
 
-p "Utilizando arquivo de spec: [#{file}]"
+puts "Utilizando arquivo de spec: [#{file}]"
 
 instance = Subgit.new file
 instance.read_and_run
