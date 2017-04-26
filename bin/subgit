@@ -1,6 +1,15 @@
 #!/usr/bin/env ruby
 require 'subgit'
 
-instance = Subgit.new ARGV[0]
+# Encoding lazarento do windows
+windows_encoding = Encoding::Windows_1252
+
+# Lê o arquivo passado para ele
+file = ARGV[0]
+# Le o current working directory
+pwd = ARGV[1]
+
+p "Utilizando arquivo de spec: [#{file}]"
+
+instance = Subgit.new file
 instance.read_and_run
-#puts Hola.hi(ARGV[0])
