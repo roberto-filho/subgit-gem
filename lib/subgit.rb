@@ -1,19 +1,19 @@
 require "subgit/version"
 
 # Encoding lazarento do windows
-windows_encoding = Encoding::Windows_1252
+#windows_encoding = Encoding::Windows_1252
 
 module Subgit
 
   class Subgit
 
     def initialize(file)
-      @file = file
+      @config_file = file
     end
 
     def read_and_run
       # Abre o arquivo e lê
-      File.open(@file, "r") do |infile|
+      File.open(@config_file, "r") do |infile|
         while (line = infile.gets)
           # Split the line
           split_str = line.split "="
@@ -44,5 +44,5 @@ module Subgit
 
     end
   end
-  
+
 end

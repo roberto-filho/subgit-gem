@@ -22,7 +22,7 @@ def to_external(external_definition_line)
   url = external[external.length-2].split "/"
   # Extrai o branch da URL
   branch = url[url.length-1]
-  return SvnExternal.new external[external.length-1], branch
+  return Subgit::SvnExternal.new external[external.length-1], branch
 end
 
 def resolve_project?(cli_arg)

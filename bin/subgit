@@ -11,5 +11,5 @@ pwd = ARGV[1]
 
 puts "Utilizando arquivo de spec: [#{file}]"
 
-instance = Subgit.new file
+instance = Subgit::Subgit.new file
 instance.read_and_run
