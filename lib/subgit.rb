@@ -32,7 +32,7 @@ module Subgit
             # Verificar se o branch atual é o branch do spec
             current_branch = `git -C #{diretorio} rev-parse --abbrev-ref HEAD`
             if current_branch != branch then
-              puts "Branch atual [#{current_branch}] não é o branch da spec [#{branch}]."
+              puts "Branch atual [#{current_branch.strip}] não é o branch da spec [#{branch.strip}]."
               next
             end
             # Atualiza o branch atual
