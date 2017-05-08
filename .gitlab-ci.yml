@@ -1,6 +1,7 @@
 image: ruby:2.3
 
-make:
+create-gem-binary:
+  stage: build
   script:
   - bundle install
   - bundle exec rake build
