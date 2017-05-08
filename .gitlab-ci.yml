@@ -1,0 +1,9 @@
+image: ruby:2.3
+
+build:
+  script:
+  - bundle install
+  - bundle exec rake build
+  artifacts:
+    paths:
+    - pkg
