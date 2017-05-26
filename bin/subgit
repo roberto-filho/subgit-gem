@@ -1,14 +1,34 @@
 #!/usr/bin/env ruby
 require 'subgit'
+require 'optparse'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: subgit [options]"
+
+  opts.on("-h", "--help", "Mostrar ajuda.") do |v|
+    options[:ajuda] = true
+  end
+
+  opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
+    options[:command] = "update"
+  end
+end.parse!
 
 # Encoding lazarento do windows
 windows_encoding = Encoding::Windows_1252
 
-# Lê o arquivo passado para ele
-file = ARGV[0]
-# Le o current working directory
-pwd = ARGV[1]
+# Verifica a operação que deve ser utilizada.
+operation = ARGV[0]
 
+# Lê o arquivo passado para ele
+file = ARGV[1]
+# Le o current working directory
+pwd = ARGV[2]
+
+#puts "Utilizando subgit versão: #{Subgit::VERSION}"
+puts "Opcoes utilizadas: #{options.to_s}"
 puts "Utilizando arquivo de spec: [#{file}]"
 
 instance = Subgit::Subgit.new file
