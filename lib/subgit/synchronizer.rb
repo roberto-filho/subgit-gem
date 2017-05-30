@@ -20,12 +20,12 @@ module Subgit
       puts "Fetching svn revisions:\n" + `git -C #{@dir} svn fetch`
       # Verificar se o branch atual é o branch do spec
       current_branch = `git -C #{@dir} rev-parse --abbrev-ref HEAD`
-      if current_branch != branch then
+      if current_branch != @branch then
         puts "Branch atual [#{current_branch.strip}] não é o branch da spec [#{@branch.strip}].".colorize(:yellow)
         next
       end
       # Atualiza o branch atual
-      puts 
+      puts
       puts "Merge:\n\n" + `git -C #{@dir} merge origin/#{@branch}`
     end
   end
