@@ -1,4 +1,5 @@
 require_relative 'svnexternal'
+require_relative 'commands'
 
 module Subgit
   EXTERNALS_ROOT_DIR = "~/svn/cooperalfa/Desenv-1.0.3"
@@ -13,7 +14,7 @@ module Subgit
     def format
       # roda o comando no diretório
       # TODO Colocar esse comando em outra classe, para poder mocar
-      externals_from_file = `cd #{@root_dir} && svn propget svn:externals -R`
+      externals_from_file = Subgit::get_externals(@root_dir)
       # Quebra em linhas
       externals = externals_from_file.split("\n").select { |i|
         i.size > 1

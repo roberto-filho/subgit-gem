@@ -17,19 +17,26 @@ OptionParser.new do |opts|
 end.parse!
 
 # Encoding lazarento do windows
-windows_encoding = Encoding::Windows_1252
+#windows_encoding = Encoding::Windows_1252
 
 # Verifica a operação que deve ser utilizada.
 operation = ARGV[0]
 
 # Lê o arquivo passado para ele
 file = ARGV[1]
+
 # Le o current working directory
+# TODO Esse cara precisa ser passado para o sincronizador
 pwd = ARGV[2]
 
 #puts "Utilizando subgit versão: #{Subgit::VERSION}"
 puts "Opcoes utilizadas: #{options.to_s}"
 puts "Utilizando arquivo de spec: [#{file}]"
 
-instance = Subgit::Subgit.new file
-instance.read_and_run
+case operation
+when "externals"
+  puts "Not implemented yet."
+when "sync"
+  instance = Subgit::Subgit.new file
+  instance.read_and_run
+end
