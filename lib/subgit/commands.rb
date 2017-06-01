@@ -1,5 +1,5 @@
 module Subgit
-
+  # TODO Separar logicamente esses metodos? ex: Subgit::Commands::current_branch
   def Subgit.get_externals(dir)
     `cd #{dir} && svn propget svn:externals -R`
   end
