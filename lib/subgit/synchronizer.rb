@@ -31,9 +31,4 @@ module Subgit
     end
   end
 
-  private
-  def fetch_svn_revisions(dir)
-    `git -C #{dir} svn fetch`
-  end
-
 end
