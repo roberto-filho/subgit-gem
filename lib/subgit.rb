@@ -25,7 +25,7 @@ module Subgit
 
           if not diretorio.nil?
             # Rodar os comandos para cada dir
-            syncer = Synchronizer.new diretorio branch
+            syncer = Synchronizer.new diretorio, branch
             syncer.update_repo
           end
         end

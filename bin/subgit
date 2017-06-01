@@ -39,4 +39,6 @@ when "externals"
 when "sync"
   instance = Subgit::Subgit.new file
   instance.read_and_run
+else
+  puts "Nenhuma opção selecionada [externals, sync]. Ex: 'subgit sync'"
 end
