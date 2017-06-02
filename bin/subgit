@@ -11,9 +11,14 @@ OptionParser.new do |opts|
     options[:ajuda] = true
   end
 
-  opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
-    options[:command] = "update"
+  # opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
+  #   options[:command] = "update"
+  # end
+
+  opts.on("-d", "--directory [DIR]", "Diretório onde os comandos devem ser executados.") do |dir|
+    options[:dir] = dir
   end
+
 end.parse!
 
 # Encoding lazarento do windows
@@ -29,13 +34,15 @@ file = ARGV[1]
 # TODO Esse cara precisa ser passado para o sincronizador
 pwd = ARGV[2]
 
+# EXTERNALS_ROOT_DIR = "~/svn/cooperalfa/Desenv-1.0.3"
 #puts "Utilizando subgit versão: #{Subgit::VERSION}"
 puts "Opcoes utilizadas: #{options.to_s}"
 puts "Utilizando arquivo de spec: [#{file}]"
 
 case operation
 when "externals"
-  puts "Not implemented yet."
+  spec = SpecCreator.new pwd
+  spec.print_formatted
 when "sync"
   instance = Subgit::Subgit.new file
   instance.read_and_run
