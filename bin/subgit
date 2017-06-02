@@ -19,6 +19,10 @@ OptionParser.new do |opts|
     options[:dir] = dir
   end
 
+  opts.on("-f", "--file [FILE]", "Arquivo de 'spec' a ser utilizado.") do |f|
+    options[:spec_file] = f
+  end
+
 end.parse!
 
 # Encoding lazarento do windows
@@ -28,6 +32,9 @@ end.parse!
 operation = ARGV[0]
 
 # Lê o arquivo passado para ele
+# if options[:dir].nil? then
+#   raise OptionParser::MissingArgument,"Parâmetro 'file' (-f) não informado."
+# end
 file = ARGV[1]
 
 # Le o current working directory
@@ -44,7 +51,7 @@ when "externals"
   spec = SpecCreator.new pwd
   spec.print_formatted
 when "sync"
-  instance = Subgit::Subgit.new file
+  instance = Subgit.new file
   instance.read_and_run
 else
   puts "Nenhuma opção selecionada [externals, sync]. Ex: 'subgit sync'"
