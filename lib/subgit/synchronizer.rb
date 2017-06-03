@@ -1,5 +1,5 @@
 require 'colorize'
-require_relative 'commands'
+require 'subgit/commands'
 # Encoding lazarento do windows
 # windows_encoding = Encoding::Windows_1252
 

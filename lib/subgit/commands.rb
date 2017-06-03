@@ -2,6 +2,7 @@ module Subgit
   # Comandos utilizados no subgit
   module Command
     # TODO: Separar logicamente esses metodos? Subgit::Commands::merge
+    # Como fazer para passar esses caras no construtor das classes?
     def get_externals(dir)
       `cd #{dir} && svn propget svn:externals -R`
     end

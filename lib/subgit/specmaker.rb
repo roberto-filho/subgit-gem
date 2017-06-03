@@ -1,10 +1,10 @@
-require_relative 'svnexternal'
-require_relative 'commands'
+require 'subgit/svnexternal'
+require 'subgit/commands'
 
 module Subgit
-
-  class SpecCreator
-    include Subgit
+  # Cria um arquivo de spec
+  class SpecMaker
+    include Command
 
     def initialize(root_dir, projects = [])
       @root_dir = root_dir
@@ -12,20 +12,18 @@ module Subgit
     end
 
     def format
-      # roda o comando no diretório
+      # roda o comando no diretorio
       # TODO Colocar esse comando em outra classe, para poder mocar
       externals_from_file = get_externals(@root_dir)
       # Quebra em linhas
-      externals = externals_from_file.split("\n").select { |i|
-        i.size > 1
-      }
+      externals = externals_from_file.split("\n").select { |i| i.size > 1 }
 
       all_externals = []
 
       externals.each do |ext|
         external = to_external(ext)
-        #puts external_info.to_array.join ' - '
-        if @projects.include? external.folder or @projects.empty?
+        # puts external_info.to_array.join ' - '
+        if @projects.include?(external.folder) || @projects.empty?
           all_externals.push external.to_property
         end
       end
@@ -41,17 +39,16 @@ module Subgit
     private
 
     def to_external(external_definition_line)
-      # Primeiro, divide a linha no espaço
+      # Primeiro, divide a linha no espaco
       external = external_definition_line.split
 
-      # A segunda parte (de trás pra frente) é o "link" do repositório
-      # Então divide a URL para pegar a parte do branch
-      url = external[external.length-2].split "/"
+      # A segunda parte (de tras pra frente) eh o "link" do repositorio
+      # Entao divide a URL para pegar a parte do branch
+      url = external[external.length - 2].split '/'
       # Extrai o branch da URL
-      branch = url[url.length-1]
-      return Subgit::SvnExternal.new external[external.length-1], branch
+      branch = url[url.length - 1]
+
+      Subgit::SvnExternal.new external[external.length - 1], branch
     end
-
   end
-
 end
