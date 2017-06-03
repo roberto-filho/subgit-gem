@@ -1,5 +1,5 @@
-require 'subgit/svnexternal'
 require 'subgit/commands'
+require 'subgit/svnexternal'
 
 module Subgit
   # Cria um arquivo de spec

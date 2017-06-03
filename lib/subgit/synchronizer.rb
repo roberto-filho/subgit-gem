@@ -18,22 +18,22 @@ module Subgit
       # Rodar os comandos para cada dir
       puts
       puts
-      puts "// #{@dir}, branch: #{@branch}" unless @dir.nil?
+      puts "// #{@dir}, branch: #{@spec_branc}".colorize(:green) unless @dir.nil?
       # Faz o fetch do codigo
-      puts 'Fetching svn revisions:'
+      puts 'Fetching svn revisions:'.colorize(:green)
       puts fetch_svn_revisions(@dir)
       # Verificar se o branch atual eh o branch do spec
       current_branch = get_current_branch @dir
-      if current_branch != @branch
+      if current_branch != @spec_branch
         puts "Branch atual [#{current_branch.strip}] " \
           "não é o branch da spec [#{@spec_branch.strip}]." \
           .colorize(:yellow)
       else
         # Atualiza o branch atual
         puts
-        puts 'Merge:'
+        puts 'Merge:'.colorize(:green)
         puts
-        puts merge(@dir, @branch)
+        puts merge(@dir, @spec_branc)
       end
     end
   end
