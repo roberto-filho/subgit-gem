@@ -5,9 +5,9 @@ require 'optparse'
 options = {}
 
 OptionParser.new do |opts|
-  opts.banner = "Usage: subgit [options]"
+  opts.banner = 'Usage: subgit [operation] [options]'
 
-  opts.on("-h", "--help", "Mostrar ajuda.") do |v|
+  opts.on('-h', '--help', 'Mostrar ajuda.') do
     options[:ajuda] = true
   end
 
@@ -15,23 +15,23 @@ OptionParser.new do |opts|
   #   options[:command] = "update"
   # end
 
-  opts.on("-d", "--directory [DIR]", "Diretório onde os comandos devem ser executados.") do |dir|
+  opts.on(
+    '-d', \
+    '--directory [DIR]', \
+    'Diretório onde os comandos devem ser executados.'
+  ) do |dir|
     options[:dir] = dir
   end
 
-  opts.on("-f", "--file [FILE]", "Arquivo de 'spec' a ser utilizado.") do |f|
+  opts.on('-f', '--file [FILE]', "Arquivo de 'spec' a ser utilizado.") do |f|
     options[:spec_file] = f
   end
-
 end.parse!
 
-# Encoding lazarento do windows
-#windows_encoding = Encoding::Windows_1252
-
-# Verifica a operação que deve ser utilizada.
+# Guarda a operacao que deve ser utilizada.
 operation = ARGV[0]
 
-# Lê o arquivo passado para ele
+# Faz a leitura o arquivo passado para ele
 # if options[:dir].nil? then
 #   raise OptionParser::MissingArgument,"Parâmetro 'file' (-f) não informado."
 # end
@@ -42,15 +42,15 @@ file = ARGV[1]
 pwd = ARGV[2]
 
 # EXTERNALS_ROOT_DIR = "~/svn/cooperalfa/Desenv-1.0.3"
-#puts "Utilizando subgit versão: #{Subgit::VERSION}"
-puts "Opcoes utilizadas: #{options.to_s}"
+# puts "Utilizando subgit versao: #{Subgit::VERSION}"
+puts "Opcoes utilizadas: #{options}"
 puts "Utilizando arquivo de spec: [#{file}]"
 
 case operation
-when "externals"
+when 'externals'
   spec = SpecCreator.new pwd
   spec.print_formatted
-when "sync"
+when 'sync'
   instance = Subgit.new file
   instance.read_and_run
 else

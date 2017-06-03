@@ -1,34 +1,40 @@
 require 'colorize'
 require_relative 'commands'
 # Encoding lazarento do windows
-#windows_encoding = Encoding::Windows_1252
+# windows_encoding = Encoding::Windows_1252
 
 module Subgit
-
-  class Synchronizer include Subgit
+  # Faz a sincronizacao de um diretorio com um branch
+  class Synchronizer
+    include Command
 
     def initialize(dir, branch)
       @dir = dir
-      @branch = branch
+      @spec_branch = branch
     end
 
+    # Atualiza um repositorio e faz merge
     def update_repo
       # Rodar os comandos para cada dir
       puts
       puts
       puts "// #{@dir}, branch: #{@branch}" unless @dir.nil?
-      # Faz o fetch do código
-      puts "Fetching svn revisions:\n" + fetch_svn_revisions(@dir)
-      # Verificar se o branch atual é o branch do spec
+      # Faz o fetch do codigo
+      puts 'Fetching svn revisions:'
+      puts fetch_svn_revisions(@dir)
+      # Verificar se o branch atual eh o branch do spec
       current_branch = get_current_branch @dir
-      if current_branch != @branch then
-        puts "Branch atual [#{current_branch.strip}] não é o branch da spec [#{@branch.strip}].".colorize(:yellow)
+      if current_branch != @branch
+        puts "Branch atual [#{current_branch.strip}] " \
+          "não é o branch da spec [#{@spec_branch.strip}]." \
+          .colorize(:yellow)
       else
         # Atualiza o branch atual
         puts
-        puts "Merge:\n\n" + merge(@dir, @branch)
+        puts 'Merge:'
+        puts
+        puts merge(@dir, @branch)
       end
     end
   end
-
 end
