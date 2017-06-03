@@ -38,10 +38,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'git', '~> 1.3'
   spec.add_development_dependency 'colorize', '~> 0.8.1'
-
-  File.open('/home/filho/Desktop/gemspec.txt', 'w') { |file|
-    file.write(spec.executables)
-    file.write "\n"
-    file.write spec.files
-  }
 end
