@@ -51,7 +51,7 @@ when 'externals'
   spec = SpecCreator.new pwd
   spec.print_formatted
 when 'sync'
-  instance = Subgit.new file
+  instance = Subgit::Subgit.new file
   instance.read_and_run
 else
   puts "Nenhuma opção selecionada [externals, sync]. Ex: 'subgit sync'"

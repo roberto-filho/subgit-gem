@@ -20,7 +20,7 @@ module Subgit
       puts
       puts "// #{@dir}, branch: #{@spec_branc}".colorize(:green) unless @dir.nil?
       # Faz o fetch do codigo
-      puts 'Fetching svn revisions:'.colorize(:green)
+      puts 'Fetching svn revisions:'
       puts fetch_svn_revisions(@dir)
       # Verificar se o branch atual eh o branch do spec
       current_branch = get_current_branch @dir
@@ -33,7 +33,7 @@ module Subgit
         puts
         puts 'Merge:'.colorize(:green)
         puts
-        puts merge(@dir, @spec_branc)
+        puts merge(@dir, @spec_branch)
       end
     end
   end
