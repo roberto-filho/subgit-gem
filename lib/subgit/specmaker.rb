@@ -45,10 +45,10 @@ module Subgit
       # A segunda parte (de tras pra frente) eh o "link" do repositorio
       # Entao divide a URL para pegar a parte do branch
       url = external[external.length - 2].split '/'
-      # Extrai o branch da URL
+      # Extrai o branch da URL (a ultima parte)
       branch = url[url.length - 1]
 
-      Subgit::SvnExternal.new external[external.length - 1], branch
+      SvnExternal.new external[external.length - 1], branch
     end
   end
 end
