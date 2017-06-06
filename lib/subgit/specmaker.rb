@@ -13,7 +13,6 @@ module Subgit
 
     def format
       # roda o comando no diretorio
-      # TODO Colocar esse comando em outra classe, para poder mocar
       externals_from_file = get_externals(@root_dir)
       # Quebra em linhas
       externals = externals_from_file.split("\n").select { |i| i.size > 1 }
@@ -47,8 +46,12 @@ module Subgit
       url = external[external.length - 2].split '/'
       # Extrai o branch da URL (a ultima parte)
       branch = url[url.length - 1]
+      # Gera o nome do diretorio
+      dir_name = external[external.length - 1]
+      dir_name.slice!('-Parent')
+      dir_name.downcase!
 
-      SvnExternal.new external[external.length - 1], branch
+      SvnExternal.new dir_name, branch
     end
   end
 end
