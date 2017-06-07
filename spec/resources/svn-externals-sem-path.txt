@@ -1,0 +1,2 @@
+http://svn.example.com/repos/Something-1.10.1 Something-Parent
+http://svn.example.com/repos/Another-0.0.1 Another-Parent

@@ -7,8 +7,9 @@ require 'subgit/synchronizer'
 module Subgit
   # Classe principal da gem
   class Subgit
-    def initialize(file)
+    def initialize(file, color_output = true)
       @config_file = file
+      @colorize = color_output
     end
 
     def read_and_run

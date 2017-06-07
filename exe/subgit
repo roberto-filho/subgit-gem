@@ -11,6 +11,10 @@ OptionParser.new do |opts|
     options[:ajuda] = true
   end
 
+  opts.on('-c', '--color-output', 'Mostrar mensagens com cor.') do |c|
+    options[:should_color_output] = c
+  end
+
   # opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
   #   options[:command] = "update"
   # end
