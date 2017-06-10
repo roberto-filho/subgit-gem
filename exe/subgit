@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'subgit'
 require 'optparse'
+require 'colorize'
 
 options = {}
 
@@ -11,8 +12,8 @@ OptionParser.new do |opts|
     options[:ajuda] = true
   end
 
-  opts.on('-c', '--color-output', 'Mostrar mensagens com cor.') do |c|
-    options[:should_color_output] = c
+  opts.on('-c', '--color-output', 'Mostrar mensagens com cor.') do |color|
+    String.disable_colorization(true) if color
   end
 
   # opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
