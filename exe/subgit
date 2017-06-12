@@ -12,8 +12,8 @@ OptionParser.new do |opts|
     options[:ajuda] = true
   end
 
-  opts.on('-c', '--color-output', 'Mostrar mensagens com cor.') do |color|
-    String.disable_colorization(true) if color
+  opts.on('-dc', '--disable-color-output', 'Mostrar mensagens sem cor.') do
+    options[:disable_colored_output] = true
   end
 
   # opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
@@ -45,6 +45,8 @@ file = ARGV[1]
 # Le o current working directory
 # TODO Esse cara precisa ser passado para o sincronizador
 pwd = ARGV[2]
+
+String.disable_colorization(true) if options[:disable_colored_output]
 
 # EXTERNALS_ROOT_DIR = "~/svn/cooperalfa/Desenv-1.0.3"
 # puts "Utilizando subgit versao: #{Subgit::VERSION}"
