@@ -12,7 +12,7 @@ OptionParser.new do |opts|
     options[:ajuda] = true
   end
 
-  opts.on('-dc', '--disable-color-output', 'Mostrar mensagens sem cor.') do
+  opts.on('-c', '--disable-color-output', 'Mostrar mensagens sem cor.') do
     options[:disable_colored_output] = true
   end
 
