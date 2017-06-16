@@ -23,9 +23,6 @@ RSpec.describe Subgit::Synchronizer do
     end
 
     it 'deve fazer merge' do
-      allow_any_instance_of(Subgit::Command).to receive(:merge) do |_m, d, b|
-        puts "Merged '#{d}' with branch '#{b}'"
-      end
       spec_branc = 'master'
       syncer = Subgit::Synchronizer.new 'home/git/project', spec_branc
 
@@ -46,5 +43,9 @@ RSpec.describe Subgit::Synchronizer do
       .to receive(:fetch_svn_revisions) do |_m, dir|
         puts "Fetched svn revisions on dir '#{dir}'"
       end
+
+    allow_any_instance_of(Subgit::Command).to receive(:merge) do |_m, d, b|
+      puts "Merged '#{d}' with branch '#{b}'"
+    end
   end
 end
