@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'subgit'
 require 'optparse'
+require 'colorize'
 
 options = {}
 
@@ -9,6 +10,10 @@ OptionParser.new do |opts|
 
   opts.on('-h', '--help', 'Mostrar ajuda.') do
     options[:ajuda] = true
+  end
+
+  opts.on('-c', '--disable-color-output', 'Mostrar mensagens sem cor.') do
+    options[:disable_colored_output] = true
   end
 
   # opts.on("-u", "--update", "Atualizar o \"spec\".") do |v|
@@ -40,6 +45,8 @@ file = ARGV[1]
 # Le o current working directory
 # TODO Esse cara precisa ser passado para o sincronizador
 pwd = ARGV[2]
+
+String.disable_colorization(true) if options[:disable_colored_output]
 
 # EXTERNALS_ROOT_DIR = "~/svn/cooperalfa/Desenv-1.0.3"
 # puts "Utilizando subgit versao: #{Subgit::VERSION}"

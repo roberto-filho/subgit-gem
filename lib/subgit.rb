@@ -7,8 +7,9 @@ require 'subgit/synchronizer'
 module Subgit
   # Classe principal da gem
   class Subgit
-    def initialize(file)
+    def initialize(file, color_output = true)
       @config_file = file
+      @colorize = color_output
     end
 
     def read_and_run
@@ -24,7 +25,7 @@ module Subgit
 
           next if diretorio.nil?
           # Rodar os comandos para cada dir
-          syncer = Synchronizer.new diretorio, branch
+          syncer = Synchronizer.new diretorio, branch.strip
           syncer.update_repo
         end
       end

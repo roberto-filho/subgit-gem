@@ -5,7 +5,7 @@ RSpec.describe Subgit::SpecMaker do
   it 'transforma os externals em chaves/valor' do
     allow_any_instance_of(Subgit::Command) \
       .to receive(:get_externals) \
-      .and_return File.read('spec/resources/svn-externals.txt')
+      .and_return File.read('spec/resources/svn-externals-com-path.txt')
 
     maker = Subgit::SpecMaker.new '/some/dir'
 

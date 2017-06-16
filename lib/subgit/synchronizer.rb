@@ -23,7 +23,7 @@ module Subgit
       puts 'Fetching svn revisions:'
       puts fetch_svn_revisions(@dir)
       # Verificar se o branch atual eh o branch do spec
-      current_branch = get_current_branch @dir
+      current_branch = get_current_branch(@dir).strip
       if current_branch != @spec_branch
         puts "Branch atual [#{current_branch.strip}] " \
           "não é o branch da spec [#{@spec_branch.strip}]." \
