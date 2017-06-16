@@ -2,32 +2,37 @@ require 'spec_helper'
 require 'subgit/specmaker'
 
 RSpec.describe Subgit::Synchronizer do
-  it 'nao deve fazer merge quando branch atual nao eh o branch da spec' do
-    setup_mocks 'other-branch'
-
-    spec_branc = 'master'
-
-    syncer = Subgit::Synchronizer.new 'home/git/project', spec_branc
-
-    expect_any_instance_of(Subgit::Command).not_to receive(:merge)
-
-    syncer.update_repo
-  end
-
-  it 'deve fazer merge quando branch atual eh o branch da spec' do
-    setup_mocks 'master'
-
-    allow_any_instance_of(Subgit::Command).to receive(:merge) do |_m, d, b|
-      puts "Merged '#{d}' with branch '#{b}'"
+  context 'quando branch atual nao eh o branch da spec' do
+    before(:each) do
+      setup_mocks 'other-branch'
     end
 
-    spec_branc = 'master'
+    it 'nao deve fazer merge' do
+      spec_branc = 'master'
+      syncer = Subgit::Synchronizer.new 'home/git/project', spec_branc
 
-    syncer = Subgit::Synchronizer.new 'home/git/project', spec_branc
+      expect_any_instance_of(Subgit::Command).not_to receive(:merge)
 
-    expect_any_instance_of(Subgit::Command).to receive(:merge)
+      syncer.update_repo
+    end
+  end
 
-    syncer.update_repo
+  context 'quando branch atual eh o branch da spec' do
+    before(:each) do
+      setup_mocks 'master'
+    end
+
+    it 'deve fazer merge' do
+      allow_any_instance_of(Subgit::Command).to receive(:merge) do |_m, d, b|
+        puts "Merged '#{d}' with branch '#{b}'"
+      end
+      spec_branc = 'master'
+      syncer = Subgit::Synchronizer.new 'home/git/project', spec_branc
+
+      expect_any_instance_of(Subgit::Command).to receive(:merge)
+
+      syncer.update_repo
+    end
   end
 
   private
