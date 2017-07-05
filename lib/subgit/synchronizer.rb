@@ -18,7 +18,7 @@ module Subgit
       # Rodar os comandos para cada dir
       puts
       puts
-      puts "// #{@dir}, branch: #{@spec_branc}".colorize(:green) unless @dir.nil?
+      puts "// #{@dir}, branch: #{@spec_branch}".colorize(:green) unless @dir.nil?
       # Faz o fetch do codigo
       puts 'Fetching svn revisions:'
       puts fetch_svn_revisions(@dir)
@@ -31,7 +31,7 @@ module Subgit
       else
         # Atualiza o branch atual
         puts
-        puts 'Merge:'.colorize(:green)
+        puts 'Merge: '.colorize(:green) + "[#{@spec_branch}]"
         puts
         puts merge(@dir, @spec_branch)
       end
